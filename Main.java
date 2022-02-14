@@ -1,10 +1,14 @@
+import java.util.*;
 class Main {
   public static void main(String[] args) {
-    system.out.println("introducir temperatura: ");
-    
-            temperatura = Integer.parseInt(in.readline());
+    int temperatura;
+    System.out.println("introducir temperatura: ");
+    Scanner teclado=new Scanner(System.in);
+    temperatura=teclado.nextInt();
+    teclado.close();
+            //temperatura = Integer.parseInt(in.readline());
             if(temperatura < 2){
-              system.out.printLn("Riesgo de hielo");
+              System.out.println("Riesgo de hielo");
 
             }
   }
