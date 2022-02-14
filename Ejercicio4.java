@@ -8,7 +8,7 @@ String tipo;
     System.out.println("¿Qué tipo de carne vas a cocinar?");
 tipo=teclado.nextLine();
 System.out.println("¿Cómo de cocinada la quieres?");
-
+modo=teclado.nextLine();
    
   }
 }
