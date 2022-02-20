@@ -6,10 +6,10 @@ public class Ejercicio3 {
 
     System.out.println("introducir mes en numero: ");
     Scanner teclado=new Scanner(System.in);
-    int temperatura=teclado.nextInt();
+    int numero=teclado.nextInt();
     teclado.close();
-            //temperatura = Integer.parseInt(in.readline());
-    switch(temperatura){
+            
+    switch(numero){
             case 1:
       System.out.println("Mes: Enero ");
       break;
