@@ -1,14 +1,15 @@
 import java.util.*;
+import java.text.DecimalFormat;
 public class Ejercicio5 {
   public static void main(String[] args) {
- Scanner teclado = new Scanner(System.in);
+DecimalFormat f = new DecimalFormat("##.00");
+        Scanner teclado = new Scanner(System.in);
         System.out.println("Apellido de la persona?");
-        String apellido = teclado.next();
+        String apellido = teclado.nextLine();
         System.out.println("Nombre de la persona?");
-        String nombre = teclado.next();
+        String nombre = teclado.nextLine();
         String puesto = "";
-        System.out.println("¿Puesto que ocupa?\n1:Agente de servicio\n2:Empleado de oficina\n3:Directivo");
-    
+        System.out.println("¿Puesto que ocupa?(1: Agente de servicio 2: Empleado de oficina 3:Directivo)");
         int n = 0;
         while (n == 0) {
             String eleccion = teclado.next();
@@ -47,10 +48,12 @@ public class Ejercicio5 {
                 tarifa = teclado.nextInt();
                 break;
             } catch (InputMismatchException e) {
+                System.out.println("¿Tarifa horaria?");
                 teclado.next();
             }
         }
         int hijos;
+        System.out.println("¿Número de hijos?");
         while (true) {
             try {
                 hijos = teclado.nextInt();
@@ -65,23 +68,23 @@ public class Ejercicio5 {
         int horas60 = 0;
         if (horas > 180) {
             horasBase = 169;
-            horas50 = horas - 160;
+            horas50 = horas - 169;
             horas60 = horas - 180;
             bruto += tarifa * horasBase;
             bruto += (horas50) * ((50 * tarifa) / 100);
             bruto += (horas60 - 180) * ((60 * tarifa) / 100);
         }
-        if (horas > 169 && horas < 180) {
+        if (horas > 169 && horas <= 180) {
             horasBase = 169;
             horas50 = horas - 169;
             bruto += tarifa * horasBase;
             bruto += horas50 * ((50 * tarifa) / 100);
         }
-        if (horas < 169) {
+        if (horas <= 169) {
             horasBase = horas;
             bruto = horasBase * tarifa;
         }
-    int primaFamiliar=0;
+        int primaFamiliar=0;
         if (hijos > 2) {
             primaFamiliar = 70 + (20 * hijos);
         } else if (hijos == 2) {
@@ -96,31 +99,33 @@ public class Ejercicio5 {
         System.out.println(horas60 + " horas con incremento del 60%");
         System.out.println("Cálculo de deducciones: ");
         double social =  ((bruto * 3.49) / 100);
-        System.out.println("Contribución para el pago de la deuda social y contingencias comunes imponible\n " + bruto + "€" + " x 3.49% = " + social + "€");
+        System.out.println("Contribución para el pago de la deuda social y contingencias comunes imponible\n " + bruto + "€" + " x 3.49% = " + f.format(social) + "€");
         double noImponible =  ((bruto * 6.15) / 100);
         System.out.println("Contribución de contingencias comunes no imponible");
-        System.out.println(bruto + "€ x 6.15% = " + noImponible + "€");
+        System.out.println(bruto + "€ x 6.15% = " + f.format(noImponible) + "€");
         double medico =  ((bruto * 0.95) / 100);
         System.out.println("Seguro médico");
-        System.out.println(bruto + "€ x 0.95% = " + medico + "€");
+        System.out.println(bruto + "€ x 0.95% = " + f.format(medico) + "€");
         double pensiones =  ((bruto * 8.44) / 100);
         System.out.println("Fondo de pensiones");
-        System.out.println(bruto + "€ x 8.44% = " + pensiones + "€");
+        System.out.println(bruto + "€ x 8.44% = " + f.format(pensiones) + "€");
         double desempleo =  ((bruto * 3.05) / 100);
         System.out.println("Seguro de desempleo");
-        System.out.println(bruto + "€ x 3.05% = " + desempleo + "€");
+        System.out.println(bruto + "€ x 3.05% = " + f.format(desempleo) + "€");
         double pComplementaria =  ((bruto * 3.81) / 100);
         System.out.println("Pensión complementaria(Entidad privada)");
-        System.out.println(bruto + "€ x 3.81% = " + pComplementaria + "€");
+        System.out.println(bruto + "€ x 3.81% = " + f.format(pComplementaria) + "€");
           double jubilacion =  ((bruto * 1.02) / 100);
           System.out.println("Contribución de jubilación anticipada");
-          System.out.println(bruto + "€ x 1.02% = " + jubilacion + "€");
+          System.out.println(bruto + "€ x 1.02% = " + f.format(jubilacion) + "€");
           double total=social+noImponible+medico+pensiones+desempleo+pComplementaria+jubilacion;
-          System.out.println("Deducciones totales de los empleados: " + total+"€");
+          System.out.println("Deducciones totales de los empleados: " + f.format(total)+"€");
           double neto=bruto-total;
-          System.out.println("Salario neto: " + neto + "€");
+          System.out.println("Salario neto: " + f.format(neto) + "€");
           double netoFinal=neto+primaFamiliar;
-          System.out.println("Prima familiar: " + primaFamiliar + "€");
-          System.out.println("Salario neto a pagar: " + netoFinal + "€");
-  }
+          System.out.println("Prima familiar: " + f.format(primaFamiliar) + "€");
+          
+          System.out.println("Salario neto a pagar: " + f.format(netoFinal) + "€");
+          
+    }
 }
